@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devika P Sajith | AI Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a2622;
+            --accent-teal: #1a4d3f;
+            --gold: #d4af37;
+            --coral: #ff6b5a;
+            --cream: #f5e6d3;
+            --text: #f8f9fa;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a2622 0%, #1a3c34 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Koi Fish Animation Background */
+        .koi-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .koi {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.4;
+            animation: swim 25s infinite ease-in-out;
+        }
+
+        @keyframes swim {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30vw, 20vh) rotate(90deg); }
+            50% { transform: translate(60vw, -10vh) rotate(180deg); }
+            75% { transform: translate(30vw, 30vh) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        .lotus {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 320px;
+            height: 100vh;
+            background: rgba(13, 44, 45, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid var(--gold);
+            box-shadow: 5px 0 30px rgba(0,0,0,0.3);
+            z-index: 10;
+            overflow-y: auto;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--coral), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-pic::before {
+            content: '🌸';
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        nav h2 { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--gold); 
+            font-size: 1.8rem; 
+            margin: 10px 0 5px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        nav > p { 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: var(--cream);
+            margin: 5px 0 30px 0;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .contact-info div {
+            margin-bottom: 8px;
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--coral);
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 320px;
+            padding: 80px 100px;
+            width: calc(100% - 320px);
+            z-index: 5;
+            position: relative;
+        }
+
+        .hero-section {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 80px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--gold), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--cream);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .section-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin-bottom: 50px;
+            color: var(--gold);
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '🌊';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+        }
+
+        section {
+            margin-bottom: 100px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .skill-category {
+            background: rgba(26, 77, 63, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .skill-category h3 {
+            color: var(--coral);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            color: var(--cream);
+            font-size: 0.95rem;
+        }
+
+        .skill-category li::before {
+            content: '🎋';
+            margin-right: 10px;
+        }
+
+        /* Project Cards */
+        .project-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .card {
+            background: rgba(26, 77, 63, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '🌸';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3rem;
+            opacity: 0.1;
+            transition: all 0.4s;
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .card:hover::before {
+            transform: rotate(180deg);
+            opacity: 0.3;
+        }
+
+        .card h3 { 
+            color: var(--gold); 
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--cream);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .card .tag {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            border: 1px solid var(--gold);
+        }
+        
+        .card a { 
+            color: var(--coral); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .card a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .card ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Achievements */
+        .achievement-list {
+            background: rgba(26, 77, 63, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+            margin-bottom: 80px;
+        }
+
+        .achievement-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievement-list li {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--coral);
+            color: var(--cream);
+            transition: all 0.3s;
+        }
+
+        .achievement-list li:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateX(10px);
+        }
+
+        .achievement-list li::before {
+            content: '🏆';
+            margin-right: 10px;
+        }
+
+        /* Chat Widget */
+        #chat-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background: rgba(13, 44, 45, 0.95);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        #chat-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: all 0.3s;
+        }
+
+        #chat-trigger:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .chat-header {
+            background: var(--gold);
+            color: black;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #chat-history { 
+            flex: 1; 
+            padding: 20px; 
+            overflow-y: auto; 
+            font-size: 0.9rem;
+        }
+
+        #chat-history::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chat-history::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+
+        #chat-history::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        #chat-input { 
+            padding: 15px; 
+            border-top: 1px solid rgba(197, 160, 89, 0.3); 
+            display: flex;
+            gap: 10px;
+        }
+
+        #chat-input input { 
+            background: rgba(255,255,255,0.1); 
+            border: 1px solid var(--gold); 
+            color: white; 
+            flex: 1; 
+            outline: none;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        #chat-input button {
+            background: var(--gold);
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #chat-input button:hover {
+            background: var(--coral);
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .user-message {
+            background: rgba(212, 175, 55, 0.2);
+            text-align: right;
+        }
+
+        .assistant-message {
+            background: rgba(255, 107, 90, 0.2);
+            color: var(--cream);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            nav {
+                width: 250px;
+            }
+
+            main {
+                margin-left: 250px;
+                width: calc(100% - 250px);
+                padding: 60px 50px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 2px solid var(--gold);
+            }
+
+            main {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px 30px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .project-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #chat-container {
+                width: 90%;
+                right: 5%;
+            }
+
+            #chat-trigger {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Koi Fish Animation Background -->
+    <div class="koi-container">
+        <div class="koi" style="top: 10%; left: 5%; animation-delay: 0s;">🐟</div>
+        <div class="koi" style="top: 50%; left: 70%; animation-delay: 5s;">🐠</div>
+        <div class="koi" style="top: 80%; left: 40%; animation-delay: 10s;">🐟</div>
+        <div class="lotus" style="top: 20%; right: 10%; animation-delay: 1s;">🪷</div>
+        <div class="lotus" style="bottom: 30%; left: 15%; animation-delay: 3s;">🌸</div>
+        <div class="lotus" style="top: 60%; right: 25%; animation-delay: 2s;">🪷</div>
+        <div class="lotus" style="bottom: 60%; left: 50%; animation-delay: 4s;">🌸</div>
+    </div>
+
+    <nav>
+        <div class="profile-pic">
+            <span style="font-size: 4rem;">👩‍💻</span>
+        </div>
+        <h2>Devika P Sajith</h2>
+        <p>B.Tech CSE AI | AI Enthusiast</p>
+        
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#experience">Experience</a>
+        </div>
+
+        <div class="contact-info">
+            <div>📧 <a href="mailto:devikasajith710@gmail.com">devikasajith710@gmail.com</a></div>
+            <div>📱 7559903609</div>
+            <div>📍 Aluva, Kerala</div>
+            <div>🌐 <a href="https://devikapsajith.netlify.app/" target="_blank">Portfolio</a></div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section" id="about">
+            <h1 class="hero-title">AI Engineer & Innovator</h1>
+            <p class="hero-subtitle">
+                Third-year Computer Science student specializing in Artificial Intelligence at Adi Shankara Institute of Engineering and Technology. 
+                Co-founder of Ayunex, passionate about creating AI solutions for social impact. CGPA: 9.65
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>AI/ML</h3>
+                    <ul>
+                        <li>Machine Learning Models</li>
+                        <li>AI Algorithms</li>
+                        <li>Model Training & Evaluation</li>
+                        <li>Basic NLP & AI Concepts</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend Development</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>FastAPI</li>
+                        <li>REST APIs</li>
+                        <li>Automation Scripts</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend & Mobile</h3>
+                    <ul>
+                        <li>Flutter (Cross-Platform)</li>
+                        <li>HTML/CSS</li>
+                        <li>UI Development</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud & Databases</h3>
+                    <ul>
+                        <li>Firebase (Auth, Firestore)</li>
+                        <li>Cloud Functions</li>
+                        <li>SQL Basics</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Version Control</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>Hugging Face Transformers</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Core Concepts</h3>
+                    <ul>
+                        <li>DBMS</li>
+                        <li>Computer Networks</li>
+                        <li>Operating Systems</li>
+                        <li>Software Engineering</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="card">
+                    <h3>Ayunex – Elderly Healthcare</h3>
+                    <div class="tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Healthcare</span>
+                        <span class="tag">IoT</span>
+                    </div>
+                    <p>AI-powered elderly healthcare system combining sensor-based vitals tracking and visual monitoring. Pitched at Kerala Innovation Fest and selected among top social impact innovations.</p>
+                    <p><strong>Role:</strong> Co-Founder | Research, coordination, and web scraping for data collection</p>
+                    <a href="#">Learn More →</a>
+                </div>
+
+                <div class="card">
+                    <h3>V.I.R.A. – Emergency Alert System</h3>
+                    <div class="tags">
+                        <span class="tag">LoRa</span>
+                        <span class="tag">Flutter</span>
+                        <span class="tag">Firebase</span>
+                    </div>
+                    <p>LoRa-based emergency communication system for women in crisis. Built using Flutter and Firebase.</p>
+                    <p><strong>Achievement:</strong> 🏆 2nd Prize, Girlathon National Hackathon</p>
+                    <p><strong>Role:</strong> Full-stack development with Flutter and Firebase</p>
+                    <a href="#">View Project →</a>
+                </div>
+
+                <div class="card">
+                    <h3>Anti-Piracy Content Protection</h3>
+                    <div class="tags">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                    <p>Two-tiered anti-piracy system combining fast perceptual hash scanning with high-accuracy AI verification. Features automated detection through Telegram bot and web scraper.</p>
+                    <p><strong>Role:</strong> Backend development, database, web scraper, and Telegram bot</p>
+                    <a href="#">View Details →</a>
+                </div>
+
+                <div class="card">
+                    <h3>Period Diet Care</h3>
+                    <div class="tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">Web App</span>
+                    </div>
+                    <p>Health app offering menstrual nutrition guidance. Solo-developed in 10 hours.</p>
+                    <p><strong>Achievement:</strong> 🏆 3rd Prize, Tink_Her_Hack 3.0</p>
+                    <a href="#">Try It Out →</a>
+                </div>
+
+                <div class="card">
+                    <h3>Stress Buster</h3>
+                    <div class="tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">Fun Project</span>
+                    </div>
+                    <p>Parody stress-relief app built at Useless Projects Hackathon 2.0 by TinkerHub.</p>
+                    <a href="#">Check It Out →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <h2 class="section-title">Achievements & Recognition</h2>
+            <div class="achievement-list">
+                <ul>
+                    <li>2nd Prize – Girlathon National Hackathon (VIRA Project)</li>
+                    <li>3rd Prize – Tink_Her_Hack 3.0 (Period Diet Care)</li>
+                    <li>Shortlisted for AICTE Productization Fellowship (APF) 2025 (Ayunex)</li>
+                    <li>Shortlisted for YUKTI Innovation Challenge (YIC) 2025 (Ayunex)</li>
+                    <li>Presented at IC WINGS Conference (Cloud Security)</li>
+                    <li>Presented at ACCTHPA 2025, FISAT (Plant Disease Detection using Deep Learning)</li>
+                    <li>Achieved SGPA of 10 in 4th Semester</li>
+                    <li>Elite Certificate - Problem Solving in Java (NPTEL, IIT Kharagpur)</li>
+                    <li>Elite Certificate - Fundamentals of AI (NPTEL, IIT Guwahati)</li>
+                    <li>Solutions Architecture Virtual Experience (Forage - June 2025)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            <div class="project-grid">
+                <div class="card">
+                    <h3>R&D Intern at Dhee Yantra</h3>
+                    <div class="tags">
+                        <span class="tag">June 2024 - July 2024</span>
+                    </div>
+                    <p><strong>Key Responsibilities:</strong></p>
+                    <ul style="color: var(--cream); line-height: 1.8;">
+                        <li>Performed web data scraping and preprocessing for AI training datasets</li>
+                        <li>Converted data into JSON format for structured processing</li>
+                        <li>Developed audio-to-text converter using Python-based speech processing</li>
+                        <li>Worked with Hugging Face Transformers for NLP tasks</li>
+                        <li>Python scripting, automation, and model integration</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Co-Founder at Ayunex</h3>
+                    <div class="tags">
+                        <span class="tag">July 2025 - Present</span>
+                    </div>
+                    <p>Leading the development of an AI-powered elderly healthcare monitoring system combining sensor technology and computer vision for comprehensive health tracking.</p>
+                    <p><strong>Impact:</strong> Selected among top social impact innovations at Kerala Innovation Fest (KSUM)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chat Widget -->
+    <div id="chat-trigger" onclick="toggleChat()">💬</div>
+    <div id="chat-container">
+        <div class="chat-header">
+            <span>Devika's Assistant</span>
+            <span class="close-chat" onclick="toggleChat()">✕</span>
+        </div>
+        <div id="chat-history"></div>
+        <div id="chat-input">
+            <input type="text" id="user-msg" placeholder="Ask about skills, projects..." onkeypress="if(event.key==='Enter') sendMsg()">
+            <button onclick="sendMsg()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chat = document.getElementById('chat-container');
+            const trigger = document.getElementById('chat-trigger');
+            if(chat.style.display === 'flex') {
+                chat.style.display = 'none';
+                trigger.style.display = 'flex';
+            } else {
+                chat.style.display = 'flex';
+                trigger.style.display = 'none';
+            }
+        }
+
+        async function sendMsg() {
+            const input = document.getElementById('user-msg');
+            const history = document.getElementById('chat-history');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-message';
+            userDiv.innerHTML = `<strong>You:</strong> ${msg}`;
+            history.appendChild(userDiv);
+            
+            input.value = '';
+            history.scrollTop = history.scrollHeight;
+
+            // Simulate AI response (replace with actual API call)
+            try {
+                const response = await fetch('http://localhost:8000/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await response.json();
+                
+                const assistantDiv = document.createElement('div');
+                assistantDiv.className = 'message assistant-message';
+                assistantDiv.innerHTML = `<strong>Assistant:</strong> ${data.answer}`;
+                history.appendChild(assistantDiv);
+            } catch(error) {
+                // Fallback response if backend is not available
+                const assistantDiv = document.createElement('div');
+                assistantDiv.className = 'message assistant-message';
+                assistantDiv.innerHTML = `<strong>Assistant:</strong> Thanks for your message! The chat backend is currently offline. Please email devikasajith710@gmail.com for inquiries.`;
+                history.appendChild(assistantDiv);
+            }
+            
+            history.scrollTop = history.scrollHeight;
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
